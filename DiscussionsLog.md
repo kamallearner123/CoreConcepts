@@ -1,4 +1,7 @@
 
+
+
+---
 **Date:** Feb 01 2025  
 
 ## Topics:  
@@ -16,9 +19,8 @@
 **Video Link:** [Watch here](https://drive.google.com/file/d/1unmCJ35UBum-OBRZDeKTJwbgH8NT8MDf/view?usp=sharing)  
 **Whiteboard Link:** Feb01 (Web view)  
 
----
-
 ## Homework:  
 1. Finish QA paper individually.  
 2. Solve any two questions on Leetcode or Hackerrank.  
 3. Read about Heap and Graphs.  
+---
