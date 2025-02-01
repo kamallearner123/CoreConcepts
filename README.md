@@ -203,7 +203,7 @@
 ## 6. Practice Schedule
 - **Morning (2 Hours)**: DSA Problem Solving.
 - **Afternoon (2 Hours)**: System Design Concepts.
-- **Weekly Review**: Revisit weak areas, simulate interview questions.
+- **Weekly Review**: Discuss about best algo/data structure and hicups.
 
 ---
 
