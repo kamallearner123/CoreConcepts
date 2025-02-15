@@ -59,8 +59,10 @@ Feb01 [Web View](https://1drv.ms/o/c/994729ec26ede13a/Ejrh7SbsKUcggJl6AAAAAAABo-
 1. **Overview on**  
    - a. API Gateway
    - b. A small example how API gateway is implemted using Flask
-   - c. Combications and Permutations
-   - d. Types of Databases
+   - c. Caching
+   - d. Load balancing
+   - e. Routing, etc...
+   - f. Segmentations
 
 2. **Gone through QA:**
    [QA Form: API Gateway](https://forms.gle/7R8B9MERwHFWer4d6)
