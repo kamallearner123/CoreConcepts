@@ -68,8 +68,8 @@ Feb01 [Web View](https://1drv.ms/o/c/994729ec26ede13a/Ejrh7SbsKUcggJl6AAAAAAABo-
    [QA Form: API Gateway](https://forms.gle/7R8B9MERwHFWer4d6)
 
 **Video Link:** [Watch here: Part1](https://drive.google.com/file/d/1a-6LUmSuqr9T1g25_tTi9tFI8dgMKYL8/view?usp=drive_link)
-(https://drive.google.com/file/d/1sUlf6-PMpDefDMYY4_sdue9-unvkyHcg/view?usp=drive_link)
-[Watch here: Part2](https://drive.google.com/file/d/1a-6LUmSuqr9T1g25_tTi9tFI8dgMKYL8/view?usp=drive_link)
+
+[Watch here: Part2](https://drive.google.com/file/d/1sUlf6-PMpDefDMYY4_sdue9-unvkyHcg/view?usp=drive_link)
 
 **Whiteboard Link:**  [Web view](https://1drv.ms/o/c/994729ec26ede13a/Ejrh7SbsKUcggJl6AAAAAAABo-nFmZsr9b9PpwqcdA4Gog)
 
