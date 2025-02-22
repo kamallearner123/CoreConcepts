@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphs in Data Structures & Algorithms Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0fff0;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff1493;
+            text-align: center;
+        }
+        h2 {
+            color: #4682b4;
+        }
+        .question {
+            background-color: #e0ffff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        .question p {
+            font-weight: bold;
+            color: #8a2be2;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #fff0f5;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .options label:hover {
+            background-color: #7fffd4;
+        }
+        .answers {
+            background-color: #fafad2;
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 10px;
+        }
+        .answers h2 {
+            color: #dc143c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Graphs in Data Structures & Algorithms Quiz</h1>
+
+    <div class="question">
+        <p>1. What is a graph in data structures?</p>
+        <div class="options">
+            <label><input type="radio" name="q1"> A. A linear data structure</label>
+            <label><input type="radio" name="q1"> B. A collection of nodes and edges</label>
+            <label><input type="radio" name="q1"> C. A type of array</label>
+            <label><input type="radio" name="q1"> D. A sorted list</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>2. Which of the following represents a directed graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q2"> A. Edges have no direction</label>
+            <label><input type="radio" name="q2"> B. Edges have a direction</label>
+            <label><input type="radio" name="q2"> C. All nodes are disconnected</label>
+            <label><input type="radio" name="q2"> D. No edges exist</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>3. What is the space complexity of an adjacency matrix for a graph with V vertices?</p>
+        <div class="options">
+            <label><input type="radio" name="q3"> A. O(V)</label>
+            <label><input type="radio" name="q3"> B. O(V + E)</label>
+            <label><input type="radio" name="q3"> C. O(V²)</label>
+            <label><input type="radio" name="q3"> D. O(E)</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>4. Which data structure is most space-efficient for sparse graphs?</p>
+        <div class="options">
+            <label><input type="radio" name="q4"> A. Adjacency matrix</label>
+            <label><input type="radio" name="q4"> B. Adjacency list</label>
+            <label><input type="radio" name="q4"> C. Edge list</label>
+            <label><input type="radio" name="q4"> D. 2D array</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>5. What does DFS stand for in graph traversal?</p>
+        <div class="options">
+            <label><input type="radio" name="q5"> A. Depth-First Search</label>
+            <label><input type="radio" name="q5"> B. Distance-First Search</label>
+            <label><input type="radio" name="q5"> C. Dynamic-First Search</label>
+            <label><input type="radio" name="q5"> D. Directed-First Search</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>6. Which algorithm finds the shortest path in an unweighted graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q6"> A. Dijkstra’s</label>
+            <label><input type="radio" name="q6"> B. BFS</label>
+            <label><input type="radio" name="q6"> C. DFS</label>
+            <label><input type="radio" name="q6"> D. Prim’s</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>7. What is the time complexity of BFS using an adjacency list?</p>
+        <div class="options">
+            <label><input type="radio" name="q7"> A. O(V)</label>
+            <label><input type="radio" name="q7"> B. O(V + E)</label>
+            <label><input type="radio" name="q7"> C. O(V²)</label>
+            <label><input type="radio" name="q7"> D. O(E²)</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>8. Which algorithm is used to find the Minimum Spanning Tree?</p>
+        <div class="options">
+            <label><input type="radio" name="q8"> A. Kruskal’s</label>
+            <label><input type="radio" name="q8"> B. Bellman-Ford</label>
+            <label><input type="radio" name="q8"> C. Floyd-Warshall</label>
+            <label><input type="radio" name="q8"> D. DFS</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>9. In a directed acyclic graph (DAG), what can topological sorting determine?</p>
+        <div class="options">
+            <label><input type="radio" name="q9"> A. Shortest path</label>
+            <label><input type="radio" name="q9"> B. Order of vertices</label>
+            <label><input type="radio" name="q9"> C. Maximum flow</label>
+            <label><input type="radio" name="q9"> D. Connected components</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>10. What does Dijkstra’s algorithm assume about edge weights?</p>
+        <div class="options">
+            <label><input type="radio" name="q10"> A. They are negative</label>
+            <label><input type="radio" name="q10"> B. They are non-negative</label>
+            <label><input type="radio" name="q10"> C. They are zero</label>
+            <label><input type="radio" name="q10"> D. They are random</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>11. Which algorithm detects negative weight cycles in a graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q11"> A. Dijkstra’s</label>
+            <label><input type="radio" name="q11"> B. Bellman-Ford</label>
+            <label><input type="radio" name="q11"> C. Kruskal’s</label>
+            <label><input type="radio" name="q11"> D. Prim’s</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>12. What is the time complexity of Kruskal’s algorithm with a Union-Find data structure?</p>
+        <div class="options">
+            <label><input type="radio" name="q12"> A. O(E log E)</label>
+            <label><input type="radio" name="q12"> B. O(V²)</label>
+            <label><input type="radio" name="q12"> C. O(V + E)</label>
+            <label><input type="radio" name="q12"> D. O(V log V)</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>13. Which graph representation is best for dense graphs?</p>
+        <div class="options">
+            <label><input type="radio" name="q13"> A. Adjacency list</label>
+            <label><input type="radio" name="q13"> B. Adjacency matrix</label>
+            <label><input type="radio" name="q13"> C. Edge list</label>
+            <label><input type="radio" name="q13"> D. Linked list</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>14. What is a cycle in a graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q14"> A. A path with no edges</label>
+            <label><input type="radio" name="q14"> B. A path that starts and ends at the same vertex</label>
+            <label><input type="radio" name="q14"> C. A disconnected component</label>
+            <label><input type="radio" name="q14"> D. A tree structure</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>15. Which of the following is a tree?</p>
+        <div class="options">
+            <label><input type="radio" name="q15"> A. A cyclic graph</label>
+            <label><input type="radio" name="q15"> B. A connected acyclic graph</label>
+            <label><input type="radio" name="q15"> C. A disconnected graph</label>
+            <label><input type="radio" name="q15"> D. A complete graph</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>16. What is the purpose of the Floyd-Warshall algorithm?</p>
+        <div class="options">
+            <label><input type="radio" name="q16"> A. Find a single shortest path</label>
+            <label><input type="radio" name="q16"> B. Find all-pairs shortest paths</label>
+            <label><input type="radio" name="q16"> C. Find a minimum spanning tree</label>
+            <label><input type="radio" name="q16"> D. Detect cycles</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>17. What does the degree of a vertex represent in an undirected graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q17"> A. Number of incoming edges</label>
+            <label><input type="radio" name="q17"> B. Number of outgoing edges</label>
+            <label><input type="radio" name="q17"> C. Total number of incident edges</label>
+            <label><input type="radio" name="q17"> D. Number of vertices</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>18. Which algorithm uses a priority queue for efficiency?</p>
+        <div class="options">
+            <label><input type="radio" name="q18"> A. DFS</label>
+            <label><input type="radio" name="q18"> B. BFS</label>
+            <label><input type="radio" name="q18"> C. Dijkstra’s</label>
+            <label><input type="radio" name="q18"> D. Bellman-Ford</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>19. What is a bipartite graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q19"> A. A graph with cycles</label>
+            <label><input type="radio" name="q19"> B. A graph with two sets of vertices and edges between them</label>
+            <label><input type="radio" name="q19"> C. A fully connected graph</label>
+            <label><input type="radio" name="q19"> D. A tree</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>20. Which traversal can detect cycles in a graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q20"> A. BFS</label>
+            <label><input type="radio" name="q20"> B. DFS</label>
+            <label><input type="radio" name="q20"> C. Both BFS and DFS</label>
+            <label><input type="radio" name="q20"> D. Neither BFS nor DFS</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>21. What is the time complexity of Prim’s algorithm with a binary heap?</p>
+        <div class="options">
+            <label><input type="radio" name="q21"> A. O(V²)</label>
+            <label><input type="radio" name="q21"> B. O((V + E) log V)</label>
+            <label><input type="radio" name="q21"> C. O(E log E)</label>
+            <label><input type="radio" name="q21"> D. O(V + E)</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>22. What is the maximum number of edges in a simple undirected graph with V vertices?</p>
+        <div class="options">
+            <label><input type="radio" name="q22"> A. V</label>
+            <label><input type="radio" name="q22"> B. V(V - 1)</label>
+            <label><input type="radio" name="q22"> C. V(V - 1)/2</label>
+            <label><input type="radio" name="q22"> D. V²</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>23. Which algorithm finds the maximum flow in a network?</p>
+        <div class="options">
+            <label><input type="radio" name="q23"> A. Ford-Fulkerson</label>
+            <label><input type="radio" name="q23"> B. Kruskal’s</label>
+            <label><input type="radio" name="q23"> C. Prim’s</label>
+            <label><input type="radio" name="q23"> D. Dijkstra’s</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>24. What is an articulation point in a graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q24"> A. A vertex with no edges</label>
+            <label><input type="radio" name="q24"> B. A vertex whose removal increases the number of components</label>
+            <label><input type="radio" name="q24"> C. A vertex with maximum degree</label>
+            <label><input type="radio" name="q24"> D. A vertex in a cycle</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>25. Which of these is NOT a property of a complete graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q25"> A. Every pair of vertices is connected</label>
+            <label><input type="radio" name="q25"> B. It is acyclic</label>
+            <label><input type="radio" name="q25"> C. It has V(V - 1)/2 edges</label>
+            <label><input type="radio" name="q25"> D. It is undirected</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>26. What does Kosaraju’s algorithm find?</p>
+        <div class="options">
+            <label><input type="radio" name="q26"> A. Shortest paths</label>
+            <label><input type="radio" name="q26"> B. Strongly connected components</label>
+            <label><input type="radio" name="q26"> C. Minimum spanning tree</label>
+            <label><input type="radio" name="q26"> D. Maximum flow</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>27. In a weighted graph, what does an edge weight typically represent?</p>
+        <div class="options">
+            <label><input type="radio" name="q27"> A. Direction</label>
+            <label><input type="radio" name="q27"> B. Cost or distance</label>
+            <label><input type="radio" name="q27"> C. Number of vertices</label>
+            <label><input type="radio" name="q27"> D. Degree of a vertex</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>28. Which algorithm can be used to detect bridges in a graph?</p>
+        <div class="options">
+            <label><input type="radio" name="q28"> A. DFS</label>
+            <label><input type="radio" name="q28"> B. BFS</label>
+            <label><input type="radio" name="q28"> C. Dijkstra’s</label>
+            <label><input type="radio" name="q28"> D. Kruskal’s</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>29. What is the time complexity of Floyd-Warshall algorithm?</p>
+        <div class="options">
+            <label><input type="radio" name="q29"> A. O(V²)</label>
+            <label><input type="radio" name="q29"> B. O(V³)</label>
+            <label><input type="radio" name="q29"> C. O(V + E)</label>
+            <label><input type="radio" name="q29"> D. O(E log V)</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>30. Which of the following is an application of graphs?</p>
+        <div class="options">
+            <label><input type="radio" name="q30"> A. Sorting numbers</label>
+            <label><input type="radio" name="q30"> B. Social network analysis</label>
+            <label><input type="radio" name="q30"> C. Binary search</label>
+            <label><input type="radio" name="q30"> D. Stack operations</label>
+        </div>
+    </div>
+
+    <div class="answers">
+        <h2>Answers</h2>
+        <p>1. B | 2. B | 3. C | 4. B | 5. A | 6. B | 7. B | 8. A | 9. B | 10. B</p>
+        <p>11. B | 12. A | 13. B | 14. B | 15. B | 16. B | 17. C | 18. C | 19. B | 20. C</p>
+        <p>21. B | 22. C | 23. A | 24. B | 25. B | 26. B | 27. B | 28. A | 29. B | 30. B</p>
+    </div>
+</body>
+</html>
