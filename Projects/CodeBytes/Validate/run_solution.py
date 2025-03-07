@@ -53,6 +53,42 @@ def test_assignment3(solution):
         print("All test cases passed")
     return failed
 
+def test_zigzag(solution):
+    # Test all the possibliities of the function and print if test case failed
+    # Before returning print how many are failed
+    failed = 0
+    if solution.Solution("PAYPALISHIRING", 3) != "PAHNAPLSIIGYIR":
+        print("Test case 1 failed")
+        failed += 1
+    if solution.Solution("PAYPALISHIRING", 4) != "PINALSIGYAHRPI":
+        print("Test case 2 failed")
+        failed += 1
+    if solution.Solution("A", 1) != "A":
+        print("Test case 3 failed")
+        failed += 1
+
+    if failed == 0:
+        print("All test cases passed")
+    return failed
+
+def test_3sum(solution):
+    # Test all the possibliities of the function and print if test case failed
+    # Before returning print how many are failed
+    failed = 0
+    if solution.Solution([-1, 0, 1, 2, -1, -4]) != [[-1, -1, 2], [-1, 0, 1]]:
+        print("Test case 1 failed")
+        failed += 1
+    if solution.Solution([0, 0, 0]) != [[0, 0, 0]]:
+        print("Test case 2 failed")
+        failed += 1
+    if solution.Solution([0, 0, 0, 0]) != [[0, 0, 0]]:
+        print("Test case 3 failed")
+        failed += 1
+
+    if failed == 0:
+        print("All test cases passed")
+    return failed
+
 
 #Definition for singly-linked list.
 class ListNode(object):
@@ -128,7 +164,9 @@ test_solutions = {
     'Assignment2': test_assignment2,
     'Assignment3': test_assignment3,
     'Assignment4': test_assignment4,
-    "Assignment5": test_assignment5
+    "Assignment5": test_assignment5,
+    "zigzag": test_zigzag,
+    "3sum": test_3sum
 }
 
 def test_solution(soultion):
