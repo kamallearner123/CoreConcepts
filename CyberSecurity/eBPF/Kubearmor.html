@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KubeArmor and eBPF in Linux</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            padding: 20px;
+        }
+        h1 {
+            color: #004080;
+        }
+        h2 {
+            color: #008000;
+        }
+        p {
+            font-size: 16px;
+            color: #333;
+        }
+        code {
+            background-color: #eee;
+            padding: 5px;
+            display: block;
+            border-left: 4px solid #008080;
+            white-space: pre-wrap;
+        }
+        .section {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <h1>KubeArmor and eBPF in Linux</h1>
+    
+    <div class="section">
+        <h2>What is KubeArmor?</h2>
+        <p>KubeArmor is a runtime security enforcement system for Kubernetes-based workloads. It leverages <span class="highlight">eBPF</span> to enforce security policies dynamically without modifying application code.</p>
+    </div>
+    
+    <div class="section">
+        <h2>How KubeArmor Uses eBPF?</h2>
+        <p>KubeArmor uses eBPF to monitor and enforce security policies in real-time. It allows you to:</p>
+        <ul>
+            <li>Restrict file access</li>
+            <li>Control process execution</li>
+            <li>Limit network communications</li>
+            <li>Detect and block suspicious activities</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Example: Restricting File Access</h2>
+        <p>The following KubeArmor policy prevents a container from reading <span class="highlight">/etc/shadow</span>:</p>
+        <code>
+apiVersion: security.kubearmor.com/v1
+kind: KubeArmorPolicy
+metadata:
+  name: block-shadow-file-access
+  namespace: default
+spec:
+  message: "Unauthorized access to /etc/shadow detected"
+  selector:
+    matchLabels:
+      app: my-container
+  process:
+    matchPaths:
+      - path: /etc/shadow
+        action: Block
+        severity: 7
+        message: "Access to /etc/shadow is not allowed"
+        tags: ["security"]
+        fromSource:
+          - path: /bin/cat
+        
+        </code>
+    </div>
+    
+    <div class="section">
+        <h2>Benefits of Using KubeArmor with eBPF</h2>
+        <ul>
+            <li>Low overhead and high performance</li>
+            <li>No need for kernel modifications</li>
+            <li>Fine-grained security enforcement</li>
+            <li>Real-time threat detection and response</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>References</h2>
+        <ul>
+            <li><a href="https://kubearmor.io/" target="_blank">KubeArmor Official Website</a></li>
+            <li><a href="https://ebpf.io/" target="_blank">eBPF Official Documentation</a></li>
+            <li><a href="https://cilium.io/" target="_blank">Cilium - eBPF Security and Networking</a></li>
+        </ul>
+    </div>
+</body>
+</html>

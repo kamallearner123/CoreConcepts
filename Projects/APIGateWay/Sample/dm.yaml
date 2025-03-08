@@ -1,0 +1,240 @@
+swagger: "2.0"
+basePath: "/"
+paths:
+    /v1/customtags:
+        get:
+            responses:
+                "200":
+                    description: "Success"
+            summary: "Function to retrieve tags data from the tags table"
+            operationId: "get_tag"
+            tags:
+                - "Tags"
+        post:
+            responses:
+                "500":
+                    description: "Internal Server Error."
+                "404":
+                    description: "Not found."
+                "200":
+                    description: "Successful."
+            summary: "Function to create a new tag"
+            description: "Retrieve records."
+            operationId: "post_tag"
+            parameters:
+                - name: "payload"
+                  in: "body"
+                  required: true
+                  schema:
+                    $ref: "#/definitions/tags"
+            tags:
+                - "Tags"
+        delete:
+            responses:
+                "404":
+                    description: "Tag not found."
+                "400":
+                    description: "Tag name is required."
+                "200":
+                    description: "Tag successfully deleted."
+            summary: "Function to delete a tag for a given Tag ID"
+            operationId: "delete_tag"
+            parameters:
+                - description: "Delete Tag"
+                  name: "id"
+                  type: "string"
+                  in: "query"
+            tags:
+                - "Tags"
+    /v1/devices:
+        get:
+            responses:
+                "500":
+                    description: "Internal Server Error."
+                "404":
+                    description: "Not found."
+                "200":
+                    description: "Successfully retrieved."
+            summary: "Function to retrieve the list of devices"
+            description: "Retrieve records."
+            operationId: "get_list"
+            tags:
+                - "Device Management"
+    /v1/devices/healthcheck/{id}:
+        parameters:
+            - name: "id"
+              in: "path"
+              required: true
+              type: "string"
+        patch:
+            responses:
+                "404":
+                    description: "Device not found."
+                "200":
+                    description: "Device status updated successfully."
+            summary: "Function to update the device status"
+            description: "Update healthcare device status."
+            operationId: "patch_healthcheck"
+            tags:
+                - "Device Management"
+    /v1/devices/upload:
+        post:
+            responses:
+                "500":
+                    description: "Internal server error."
+                "400":
+                    description: "Invalid file path or format."
+                "201":
+                    description: "File uploaded successfully."
+            summary: "Function to save devices file in the database"
+            description: "Upload a device CSV file."
+            operationId: "post_upload_csv"
+            tags:
+                - "default"
+    /v1/devices/{id}/tags:
+        parameters:
+            - name: "payload"
+              required: true
+              in: "body"
+              schema:
+                $ref: "#/definitions/device_db"
+            - name: "id"
+              in: "path"
+              required: true
+              type: "string"
+        patch:
+            responses:
+                "200":
+                    description: "Success"
+            summary: "Function to update the tags for a device"
+            operationId: "patch_device_tag"
+            tags:
+                - "Device Management"
+    # Heading for 
+    /v1/dhcpdconf:
+        post:
+            responses:
+                "500":
+                    description: "Internal server error."
+                "400":
+                    description: "Invalid file path or format."
+                "200":
+                    description: "File uploaded successfully."
+            description: "Upload dhcpd.conf file."
+            operationId: "post_dhcpd_conf"
+            tags:
+                - "default"
+    /v1/dhcpserver:
+        post:
+            responses:
+                "500":
+                    description: "Internal server error."
+                "400":
+                    description: "Invalid file path or format."
+                "200":
+                    description: "File uploaded successfully."
+            summary: "Function to handle the data for dhcp server details and keep the content in local"
+            description: "Upload dhcp server details."
+            operationId: "post_dhcp_server"
+            tags:
+                - "default"
+    /v1/dhcpservice/start:
+        patch:
+            responses:
+                "500":
+                    description: "Internal Server Error."
+                "200":
+                    description: "DHCP service started successfully."
+            summary: "Function to start the DHCP service"
+            description: "Start the DHCP service."
+            operationId: "patch_dhcp_service_start"
+            tags:
+                - "default"
+    /v1/dhcpservice/status:
+        get:
+            responses:
+                "500":
+                    description: "Internal Server Error."
+                "200":
+                    description: "DHCP service status queried successfully."
+            summary: "Function to query the DHCP service status"
+            description: "Query DHCP service status.\nTrue/False"
+            operationId: "get_dhcp_service_status"
+            tags:
+                - "default"
+    /v1/dhcpservice/stop:
+        patch:
+            responses:
+                "500":
+                    description: "Internal Server Error."
+                "200":
+                    description: "DHCP service stopped successfully."
+            summary: "Function to stop the DHCP service"
+            description: "Stop the DHCP service."
+            operationId: "patch_dhcp_service_stop"
+            tags:
+                - "default"
+    /v1/new_upload:
+        post:
+            responses:
+                "200":
+                    description: "Success"
+            description: "devices."
+            operationId: "post_new_upload"
+            tags:
+                - "default"
+    /v1/synclist:
+        get:
+            responses:
+                "500":
+                    description: "Internal Server Error."
+                "404":
+                    description: "Not found."
+                "200":
+                    description: "Successfully retrieved the devices."
+            summary: "Function to scan the list of devices"
+            description: "Retrieve records."
+            operationId: "get_scan"
+            tags:
+                - "default"
+    /v1/upload:
+        post:
+            responses:
+                "200":
+                    description: "Success"
+            description: "devices."
+            operationId: "post_upload"
+            tags:
+                - "default"
+info:
+    title: "Device Management API"
+    version: "1.0"
+produces:
+    - "application/json"
+consumes:
+    - "application/json"
+tags:
+    - name: "default"
+      description: "Default namespace"
+definitions:
+    device_db:
+        required:
+            - "Tag"
+        properties:
+            Tag:
+                type: "object"
+                description: "Select a tag"
+        type: "object"
+    tags:
+        required:
+            - "Tags"
+        properties:
+            Tags:
+                type: "object"
+                description: "Add a tag"
+        type: "object"
+responses:
+    ParseError:
+        description: "When a mask can't be parsed"
+    MaskError:
+        description: "When any error occurs on mask"

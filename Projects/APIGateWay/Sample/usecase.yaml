@@ -1,0 +1,56 @@
+swagger: "2.0"
+basePath: "/"
+paths:
+  /v1/usecases/:
+    get:
+      responses:
+        500:
+          description: "Internal Server Error."
+        404:
+          description: "Not found."
+        200:
+          description: "Successfully retrieved."
+      summary: "Retrieves all the records from the usecase table"
+      description: "Retrieve records."
+      operationId: "get_usecase"
+      tags:
+        - "default"
+  /v1/usecases/recommendations:
+    get:
+      responses:
+        200:
+          description: "Success"
+      summary: "Get the recommendations based on the devices"
+      description: "Recommendations."
+      operationId: "get_recommendations"
+      tags:
+        - "default"
+  /v1/usecases/{id}:
+    parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+    get:
+      responses:
+        200:
+          description: "Success"
+      summary: "Retrieves the details of a specific usecase"
+      operationId: "get_usecase_id"
+      tags:
+        - "default"
+info:
+  title: "Usecase API"
+  version: "1.0"
+produces:
+  - "application/json"
+consumes:
+  - "application/json"
+tags:
+  - name: "default"
+    description: "Default namespace"
+responses:
+  ParseError:
+    description: "When a mask can't be parsed"
+  MaskError:
+    description: "When any error occurs on mask"

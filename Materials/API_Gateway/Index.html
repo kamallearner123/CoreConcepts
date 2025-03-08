@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Gateway - Complete Guide</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background: #f9f9f9; color: #333; }
+        h1, h2 { text-align: center; color: #007bff; }
+        h2 { border-bottom: 2px solid #007bff; padding-bottom: 5px; }
+        h3 { color: #ff5733; }
+        p { line-height: 1.5; }
+        pre { background: #222; color: #fff; padding: 10px; border-radius: 5px; overflow-x: auto; }
+        code { color: #ffcc00; font-weight: bold; }
+        ul { background: #fff; padding: 10px; border-radius: 5px; }
+        li { margin-bottom: 5px; }
+        .highlight { background: #ffffcc; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>🚀 API Gateway - Complete Guide</h1>
+
+    <h2>1️⃣ What is an API Gateway?</h2>
+    <p>An <span class="highlight">API Gateway</span> is a server that acts as an entry point for multiple APIs, managing authentication, rate limiting, caching, and request routing.</p>
+
+    <h2>2️⃣ Why Use an API Gateway?</h2>
+    <ul>
+        <li><b>🔹 Security:</b> Implements authentication and rate limiting.</li>
+        <li><b>🔹 Load Balancing:</b> Distributes traffic across multiple servers.</li>
+        <li><b>🔹 Caching:</b> Reduces response times for frequently accessed data.</li>
+        <li><b>🔹 Request Transformation:</b> Converts one API format to another.</li>
+        <li><b>🔹 Logging & Monitoring:</b> Tracks API performance.</li>
+    </ul>
+
+    <h2>3️⃣ How API Gateway Works</h2>
+    <p>It processes client requests and routes them to the appropriate service.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/API_Gateway_Architecture.svg" width="100%" alt="API Gateway Architecture">
+
+    <h2>4️⃣ Key Components of an API Gateway</h2>
+    <ul>
+        <li><b>🔸 Authentication:</b> Uses OAuth, JWT, or API keys.</li>
+        <li><b>🔸 Rate Limiting:</b> Limits requests per second.</li>
+        <li><b>🔸 Load Balancing:</b> Distributes traffic efficiently.</li>
+        <li><b>🔸 Request & Response Transformation:</b> Converts formats (XML → JSON).</li>
+    </ul>
+
+    <h2>5️⃣ Example API Gateway Configuration (NGINX)</h2>
+    <pre>
+server {
+    listen 80;
+    location /api/ {
+        proxy_pass http://backend_service;
+        proxy_set_header Host $host;
+    }
+}
+    </pre>
+
+    <h2>6️⃣ Popular API Gateway Tools</h2>
+    <ul>
+        <li><b>AWS API Gateway</b> - Fully managed, integrates with AWS Lambda.</li>
+        <li><b>Kong API Gateway</b> - Open-source, supports plugins.</li>
+        <li><b>NGINX API Gateway</b> - Fast, lightweight.</li>
+    </ul>
+
+    <h2>7️⃣ Challenges of API Gateways</h2>
+    <ul>
+        <li><b>Latency:</b> Additional network hop.</li>
+        <li><b>Single Point of Failure:</b> Can become a bottleneck.</li>
+        <li><b>Complex Configuration:</b> Managing multiple services.</li>
+    </ul>
+
+    <h2>8️⃣ Real-World Use Case: API Gateway in Microservices</h2>
+    <p>In a microservices architecture, an API Gateway acts as a single entry point, managing all client requests.</p>
+    
+    <h2>9️⃣ Best Practices</h2>
+    <ul>
+        <li>🔹 <b>Use Rate Limiting</b> to prevent abuse.</li>
+        <li>🔹 <b>Enable Caching</b> to improve performance.</li>
+        <li>🔹 <b>Implement Circuit Breakers</b> to prevent cascading failures.</li>
+        <li>🔹 <b>Monitor API Logs</b> to track errors and latency.</li>
+    </ul>
+
+    <h2>🔟 Conclusion</h2>
+    <p>An API Gateway is essential for managing and securing API requests in modern applications.</p>
+
+</body>
+</html>

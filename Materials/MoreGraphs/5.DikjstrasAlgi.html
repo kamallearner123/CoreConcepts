@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijkstra's Algorithm - Deep Dive</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .code {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .highlight {
+            background: #dff0d8;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 Dijkstra’s Algorithm: Deep Dive with Real-Time Use Cases</h1>
+
+    <h2>🔹 What is Dijkstra’s Algorithm?</h2>
+    <p>Dijkstra’s Algorithm finds the <strong>shortest path</strong> from a <strong>single source node</strong> to all other nodes in a weighted graph.</p>
+    <ul>
+        <li>Uses a <strong>greedy approach</strong> with a <strong>priority queue (Min Heap)</strong>.</li>
+        <li>Ensures the shortest path is always selected first.</li>
+        <li>Works with graphs that have <span class="highlight">non-negative weights</span>.</li>
+    </ul>
+
+    <h2>🔹 Real-World Applications of Dijkstra’s Algorithm</h2>
+
+    <h3>📍 1. GPS Navigation Systems (Google Maps, Uber, Apple Maps)</h3>
+    <p>When you search for the fastest route, Dijkstra’s Algorithm helps compute the <strong>shortest path</strong> based on:</p>
+    <ul>
+        <li>Distance between locations</li>
+        <li>Traffic conditions</li>
+        <li>Road types (highways, streets)</li>
+    </ul>
+
+    <h3>🌍 2. Internet Routing & Network Protocols (OSPF, BGP, MPLS)</h3>
+    <p>Network routers use Dijkstra’s Algorithm to determine the <strong>fastest and least congested path</strong> for data packets.</p>
+
+    <h3>📦 3. Cloud Computing & Load Balancing</h3>
+    <p>Cloud service providers use Dijkstra’s Algorithm to distribute user requests to the <strong>nearest and least congested server</strong>.</p>
+
+    <h3>🚄 4. Public Transportation & Airline Systems</h3>
+    <p>Optimizing flight routes, metro systems, and delivery logistics using the <strong>shortest path strategy</strong>.</p>
+
+    <h3>🎮 5. Game AI & Pathfinding (A* Algorithm in Games)</h3>
+    <p>In games like FIFA and Call of Duty, AI characters find the <strong>shortest route</strong> using Dijkstra’s Algorithm.</p>
+
+    <h2>🔹 Step-by-Step Execution of Dijkstra’s Algorithm</h2>
+    <h3>Graph Representation:</h3>
+    <pre class="code">
+    (A) --4--> (B)
+     |         / |
+     2       1   5
+     |    /      |
+    (C) --3--> (D)
+    </pre>
+
+    <h3>Algorithm Steps:</h3>
+    <ol>
+        <li>Initialize all node distances to <span class="highlight">infinity (∞)</span> except the start node.</li>
+        <li>Use a <strong>Min Heap (Priority Queue)</strong> to select the shortest known distance.</li>
+        <li>Update distances of neighboring nodes if a shorter path is found.</li>
+        <li>Repeat until all nodes are visited.</li>
+    </ol>
+
+    <h2>🔹 Python Implementation of Dijkstra’s Algorithm</h2>
+    <pre class="code">
+def dijkstra(graph, start):
+    import heapq  # Min Heap for priority queue
+
+    # Step 1: Initialize distance and priority queue
+    min_heap = []
+    heapq.heappush(min_heap, (0, start))  # (distance, node)
+
+    distances = {node: float('inf') for node in graph}
+    distances[start] = 0
+
+    while min_heap:
+        current_dist, current_node = heapq.heappop(min_heap)
+
+        # Step 2: Visit each neighbor
+        for neighbor, weight in graph[current_node]:
+            distance = current_dist + weight
+
+            # Step 3: If shorter path found, update and push to heap
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                heapq.heappush(min_heap, (distance, neighbor))
+
+    return distances
+    </pre>
+
+    <h3>🔹 Time Complexity Analysis</h3>
+    <table border="1" cellspacing="0" cellpadding="5">
+        <tr>
+            <th>Data Structure Used</th>
+            <th>Time Complexity</th>
+        </tr>
+        <tr>
+            <td>Adjacency Matrix (O(V²))</td>
+            <td>O(V²)</td>
+        </tr>
+        <tr>
+            <td>Priority Queue (Min Heap) (O((V + E) log V))</td>
+            <td>O((V + E) log V)</td>
+        </tr>
+    </table>
+
+    <h2>🔹 Conclusion</h2>
+    <p>Dijkstra’s Algorithm is essential in system design for optimizing paths in:</p>
+    <ul>
+        <li>🚀 <strong>Navigation Systems</strong> (Google Maps, Uber)</li>
+        <li>🌐 <strong>Networking (OSPF, BGP Routing)</strong></li>
+        <li>☁️ <strong>Cloud Computing (AWS, Azure Load Balancing)</strong></li>
+        <li>📦 <strong>Logistics (Amazon, FedEx, DHL)</strong></li>
+        <li>🎮 <strong>Game AI & Pathfinding</strong></li>
+    </ul>
+
+    <p><strong>Do you want an interactive visualization?</strong> Let me know! 🎯</p>
+</div>
+
+</body>
+</html>

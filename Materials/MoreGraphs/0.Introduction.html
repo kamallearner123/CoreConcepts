@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Graph Visualization</title>
+</head>
+<body>
+    <canvas id="graphCanvas" width="400" height="400"></canvas>
+    <script>
+        let canvas = document.getElementById("graphCanvas");
+        let ctx = canvas.getContext("2d");
+
+        // Nodes
+        let nodes = [
+            { x: 100, y: 100 },
+            { x: 200, y: 200 },
+            { x: 300, y: 100 }
+        ];
+
+        // Edges
+        let edges = [
+            [0, 1], [1, 2], [2, 0]
+        ];
+
+        function drawGraph() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Edges
+            ctx.strokeStyle = "black";
+            edges.forEach(edge => {
+                let [a, b] = edge;
+                ctx.beginPath();
+                ctx.moveTo(nodes[a].x, nodes[a].y);
+                ctx.lineTo(nodes[b].x, nodes[b].y);
+                ctx.stroke();
+            });
+
+            // Draw Nodes
+            ctx.fillStyle = "blue";
+            nodes.forEach(node => {
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 10, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        drawGraph();
+    </script>
+</body>
+</html>

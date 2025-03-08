@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBPF in Linux - Detailed Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #1e90ff; /* Dodger Blue */
+            border-bottom: 2px solid #1e90ff;
+            padding-bottom: 5px;
+        }
+        h2 {
+            color: #2e8b57; /* Sea Green */
+        }
+        h3 {
+            color: #6a5acd; /* Slate Blue */
+        }
+        p {
+            color: #333;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #2f2f2f;
+            color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        .highlight {
+            color: #ff4500; /* Orange Red */
+            font-weight: bold;
+        }
+        .note {
+            color: #8a2be2; /* Blue Violet */
+            font-style: italic;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        a {
+            color: #4682b4; /* Steel Blue */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>eBPF in Linux: A Detailed Guide</h1>
+
+    <h2>What is eBPF?</h2>
+    <p>
+        <strong>eBPF</strong> (extended Berkeley Packet Filter) is a revolutionary technology in the Linux kernel that allows developers to run sandboxed programs inside the kernel without modifying kernel source code or loading kernel modules. Originally derived from the Berkeley Packet Filter (BPF) for network packet filtering, eBPF extends its capabilities to system tracing, security, and performance monitoring.
+    </p>
+    <ul>
+        <li><span class="highlight">Key Features:</span>
+            <ul>
+                <li><span class="note">Safety</span>: Programs are verified by the kernel to ensure they don’t crash or harm the system.</li>
+                <li><span class="note">Flexibility</span>: Attach eBPF programs to various kernel hooks (e.g., syscalls, network events, tracepoints).</li>
+                <li><span class="note">Performance</span>: Executes at near-native speed thanks to a Just-In-Time (JIT) compiler.</li>
+            </ul>
+        </li>
+        <li><span class="highlight">Use Cases:</span>
+            <ul>
+                <li>Network monitoring and filtering (e.g., firewalls, DDoS protection).</li>
+                <li>System observability (e.g., tracing syscalls, profiling).</li>
+                <li>Security (e.g., enforcing policies, detecting anomalies).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>How eBPF Works</h2>
+    <p>
+        eBPF programs are written in a restricted C-like language, compiled to eBPF bytecode using tools like <code>clang</code>, and loaded into the kernel via the <code>bpf()</code> system call. The kernel’s verifier ensures the program is safe, then the JIT compiler translates it to machine code for execution.
+    </p>
+    <ul>
+        <li><span class="highlight">Components:</span>
+            <ul>
+                <li><span class="note">eBPF Program</span>: The code executed in the kernel.</li>
+                <li><span class="note">Maps</span>: Data structures (e.g., hash tables, arrays) to share data between kernel and user space.</li>
+                <li><span class="note">Helper Functions</span>: Kernel-provided APIs for eBPF programs to interact with the system.</li>
+            </ul>
+        </li>
+        <li><span class="highlight">Workflow:</span>
+            <ol>
+                <li>Write an eBPF program in C.</li>
+                <li>Compile it to eBPF bytecode with <code>clang -target bpf</code>.</li>
+                <li>Load it into the kernel using a user-space tool (e.g., <code>bpftool</code> or <code>libbpf</code>).</li>
+                <li>Attach it to a kernel event (e.g., a syscall or network packet).</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h2>Code Example: Simple eBPF Program</h2>
+    <p>Let’s create an eBPF program to count system calls and a user-space program to read the counts.</p>
+
+    <h3>1. eBPF Program (C Code)</h3>
+    <p>File: <code>syscall_counter.bpf.c</code></p>
+    <pre>
+#include &lt;linux/bpf.h&gt;
+#include &lt;linux/ptrace.h&gt;
+#include &lt;bpf/bpf_helpers.h&gt;
+
+struct {
+    __uint(type, BPF_MAP_TYPE_HASH);
+    __uint(max_entries, 1024);
+    __type(key, __u32);    // Syscall number
+    __type(value, __u64);  // Counter
+} syscall_counts SEC(".maps");
+
+SEC("tracepoint/raw_syscalls/sys_enter")
+int trace_sys_enter(struct trace_event_raw_sys_enter *ctx) {
+    __u32 syscall_nr = ctx->id;
+    __u64 *val, init_val = 1;
+
+    val = bpf_map_lookup_elem(&syscall_counts, &syscall_nr);
+    if (!val) {
+        bpf_map_update_elem(&syscall_counts, &syscall_nr, &init_val, BPF_NOEXIST);
+    } else {
+        __sync_fetch_and_add(val, 1);
+    }
+    return 0;
+}
+
+char _license[] SEC("license") = "GPL";
+    </pre>
+    <p class="note">
+        <strong>Explanation:</strong> The map <code>syscall_counts</code> stores syscall numbers and their counts. The program attaches to the <code>sys_enter</code> tracepoint and increments the count for each syscall.
+    </p>
+
+    <h3>2. Compile the eBPF Program</h3>
+    <pre>clang -O2 -target bpf -c syscall_counter.bpf.c -o syscall_counter.bpf.o</pre>
+
+    <h3>3. User-Space Program (C Code)</h3>
+    <p>File: <code>loader.c</code></p>
+    <pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;bpf/libbpf.h&gt;
+
+int main() {
+    struct bpf_object *obj;
+    struct bpf_map *map;
+    int map_fd;
+
+    obj = bpf_object__open_file("syscall_counter.bpf.o", NULL);
+    if (libbpf_get_error(obj)) {
+        fprintf(stderr, "Failed to open BPF object\n");
+        return 1;
+    }
+
+    if (bpf_object__load(obj)) {
+        fprintf(stderr, "Failed to load BPF program\n");
+        return 1;
+    }
+
+    map = bpf_object__find_map_by_name(obj, "syscall_counts");
+    map_fd = bpf_map__fd(map);
+    if (map_fd < 0) {
+        fprintf(stderr, "Failed to find map\n");
+        return 1;
+    }
+
+    printf("eBPF program loaded. Monitoring syscalls...\n");
+    sleep(10);
+
+    __u32 key = -1, next_key;
+    __u64 value;
+    while (bpf_map_get_next_key(map_fd, &key, &next_key) == 0) {
+        bpf_map_lookup_elem(map_fd, &next_key, &value);
+        printf("Syscall %u: %llu calls\n", next_key, value);
+        key = next_key;
+    }
+
+    bpf_object__close(obj);
+    return 0;
+}
+    </pre>
+    <p class="note">
+        <strong>Explanation:</strong> Uses <code>libbpf</code> to load the eBPF program, waits 10 seconds, then reads and prints syscall counts from the map.
+    </p>
+
+    <h3>4. Compile and Run User-Space Program</h3>
+    <pre>
+gcc -o loader loader.c -lbpf
+sudo ./loader
+    </pre>
+    <p><strong>Dependencies:</strong> Install <code>libbpf-dev</code> (<code>sudo apt install libbpf-dev</code> on Ubuntu).</p>
+
+    <h2>Key Tools for eBPF</h2>
+    <ul>
+        <li><strong>bcc (BPF Compiler Collection)</strong>: Python-based framework.
+            <ul><li>Example: <code>sudo tcptracer-bpfcc</code></li></ul>
+        </li>
+        <li><strong>bpftool</strong>: CLI for managing eBPF programs.
+            <ul><li>Example: <code>sudo bpftool prog list</code></li></ul>
+        </li>
+        <li><strong>libbpf</strong>: C library for loading eBPF programs.</li>
+    </ul>
+
+    <h2>References</h2>
+    <ul>
+        <li><strong>Official Documentation:</strong>
+            <ul>
+                <li><a href="https://www.kernel.org/doc/html/latest/bpf/">Linux Kernel eBPF</a></li>
+                <li><a href="https://github.com/libbpf/libbpf">libbpf GitHub</a></li>
+            </ul>
+        </li>
+        <li><strong>Books:</strong>
+            <ul><li><em>“BPF Performance Tools”</em> by Brendan Gregg</li></ul>
+        </li>
+        <li><strong>Tutorials:</strong>
+            <ul>
+                <li><a href="https://cilium.io/blog/2021/05/20/getting-started-with-ebpf/">Cilium eBPF Guide</a></li>
+                <li><a href="https://www.iovisor.org/technology/ebpf">IO Visor Project</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <p class="note">For more real-time insights, search “eBPF” on X!</p>
+</body>
+</html>
