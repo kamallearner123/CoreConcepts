@@ -2,7 +2,7 @@
 def bfs(graph, start, goal):
 
     visisted = set([start]) # {0,1,2,3,4}
-    to_traverse = graph[start] # <--- [5] <--- (DFS) Queue
+    to_traverse = graph[start] # <--- [5] <--- (DFS) Queue/Stack
 
     path = [start]
 
@@ -30,7 +30,7 @@ def bfs(graph, start, goal):
     
 if __name__ == '__main__':
     # Adjucency list
-    graph = {0: [(1,1000), (2,500), (3, 700)], 
+    graph = {0: [1, 2, 3], 
              1: [0, 4,5], 
              2: [0,3], 
              3: [0,2,4],
